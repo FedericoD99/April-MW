@@ -1,0 +1,119 @@
+/* Yankees Color Scheme */
+:root {
+    --navy: #0C2340;
+    --gray: #C4CED4;
+    --white: #FFFFFF;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    background-color: var(--gray);
+}
+
+.bg-navy {
+    background-color: var(--navy);
+}
+
+.navbar-brand {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.navbar-nav .nav-link {
+    color: var(--white) !important;
+}
+
+.navbar-nav .nav-link:hover {
+    color: var(--gray) !important;
+}
+
+.hero {
+    background-color: var(--navy);
+    padding: 80px 0;
+    margin-top: 56px; /* Offset for fixed navbar */
+}
+
+.hero h1 {
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+.hero p {
+    font-size: 1.2rem;
+}
+
+/* Player Spotlight */
+.jersey-card {
+    position: relative;
+    height: 200px;
+    background-color: var(--white);
+    border: 2px solid var(--navy);
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 20px;
+    overflow: hidden;
+}
+
+.jersey-number {
+    font-size: 4rem;
+    font-weight: bold;
+    color: var(--navy);
+}
+
+.jersey-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(12, 35, 64, 0.8);
+    color: var(--white);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    opacity: 0;
+    transition: opacity 0.3s;
+    padding: 10px;
+    text-align: center;
+}
+
+.jersey-card:hover .jersey-overlay,
+.jersey-card.active .jersey-overlay {
+    opacity: 1;
+}
+
+.jersey-overlay h3 {
+    font-size: 1.2rem;
+    margin: 0;
+}
+
+.jersey-overlay p {
+    font-size: 0.9rem;
+    margin: 5px 0 0;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .hero {
+        padding: 50px 0;
+    }
+
+    .hero h1 {
+        font-size: 1.8rem;
+    }
+
+    .hero p {
+        font-size: 1rem;
+    }
+
+    .jersey-card {
+        height: 150px;
+    }
+
+    .jersey-number {
+        font-size: 3rem;
+    }
+}
