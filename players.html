@@ -3,11 +3,11 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>New York Yankees - Home</title>
+    <title>New York Yankees - Players</title>
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <!-- Custom CSS -->
     <link rel="stylesheet" href="style.css">
+   
 </head>
 <body>
     <!-- Navigation bar using Bootstrap -->
@@ -20,7 +20,7 @@
             <div class="collapse navbar-collapse" id="navbarNav">
                 <ul class="navbar-nav ms-auto">
                     <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="players.html">Players</a></li>
+                    <li class="nav-item"><a class="nav-link active" href="players.html">Players</a></li>
                     <li class="nav-item"><a class="nav-link" href="highlights.html">Highlights</a></li>
                 </ul>
             </div>
@@ -29,22 +29,15 @@
 
     <!-- Header -->
     <header>
-        <h1 class="display-4">Welcome to the New York Yankees Fan Site!</h1>
+        <h1 class="display-4">Star Players</h1>
     </header>
 
-    <!-- Main content using Bootstrap grid -->
+    <!-- Main content -->
     <main class="container">
         <div class="row">
-            <div class="col-12 col-md-6">
-                <h2>About the Yankees</h2>
-                <p>The New York Yankees, with 27 World Series titles, are one of the most storied franchises in sports history.</p>
-                <img src="wide-view-of-yankee-stadium-r6g4nqz1v8cqak8l.jpg" alt="Yankees Stadium " class="img-fluid">
-            </div>
-            <div class="col-12 col-md-6">
-                <h2>Latest News</h2>
-                <p>Stay tuned for updates on the 2025 season!</p>
-                <button class="btn btn-yankees" id="newsButton">Get Latest News</button>
-                <div id="newsMessage"></div>
+            <div class="col-12">
+                <button class="btn btn-yankees" id="shuffleButton">Shuffle Players</button>
+                <ul class="list-group" id="playerList"></ul>
             </div>
         </div>
     </main>
@@ -54,9 +47,8 @@
         <p>© 2025 New York Yankees Fan Site</p>
     </footer>
 
-    <!-- Bootstrap 5 JS and Popper.js -->
+    <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
-    <!-- Custom JS -->
-    <script src="script.js"></script>
+    <script src="player.js"></script>
 </body>
 </html>
