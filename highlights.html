@@ -10,10 +10,11 @@
 </head>
 <body>
     <!-- Navigation bar using Bootstrap -->
-    <nav class="navbar navbar-expand-lg">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark px-3">
         <div class="container-fluid">
             <a class="navbar-brand" href="index.html">Yankees Fan Site</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
@@ -27,27 +28,29 @@
     </nav>
 
     <!-- Header -->
-    <header>
+    <header class="text-center my-4">
         <h1 class="display-4">Recent Highlights</h1>
     </header>
 
     <!-- Main content -->
     <main class="container">
-        <div class="row">
+        <div class="row gy-4">
             <div class="col-12 col-md-6">
                 <h2>Filter Highlights</h2>
-                <input type="text" class="form-control" id="filterInput" placeholder="Search highlights (e.g., Judge, Soto)">
+                <input type="text" class="form-control mb-3" id="filterInput" placeholder="Search highlights (e.g., Judge, Soto)">
                 <ul class="list-group" id="highlightList"></ul>
             </div>
             <div class="col-12 col-md-6">
-                <img src="images (4).jpeg" alt="Yankees Highlight " class="img-fluid">
+                <img src="images (4).jpeg" alt="Yankees Highlight" class="img-fluid rounded shadow-sm">
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer>
-        <p>© 2025 New York Yankees Fan Site</p>
+    <footer class="bg-dark text-white text-center py-3 mt-5">
+        <div class="container">
+            <p>© 2025 New York Yankees Fan Site</p>
+        </div>
     </footer>
 
     <!-- Bootstrap 5 JS -->
