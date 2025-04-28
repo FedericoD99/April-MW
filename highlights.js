@@ -1,6 +1,6 @@
-console.log('highlights.js loaded'); // Debug log
+console.log('highlights.js loaded');
 
-// Array of highlights
+// Array of default highlights (shown when search is empty)
 const highlights = [
     'Judge hits 50th home run of the season!',
     'Cole pitches a shutout against Red Sox.',
@@ -9,63 +9,159 @@ const highlights = [
     'Volpe steals three bases in a single game.'
 ];
 
+// Array of additional players and their highlights (shown only when searched)
+const additionalPlayerHighlights = [
+    '', // Judge (no additional highlight)
+    '', // Cole
+    '', // Soto
+    '', // Stanton
+    '', // Volpe
+    'Rizzo smashes a game-tying homer in the 8th!', // Rizzo
+    'Torres delivers a clutch RBI double!', // Torres
+    'Wells makes a diving catch to save the game!' // Wells
+];
+
+// Array of known player names (for matching search terms)
+const playerNames = [
+    'Judge',
+    'Cole',
+    'Soto',
+    'Stanton',
+    'Volpe',
+    'Rizzo',
+    'Torres',
+    'Wells'
+];
+
 // Display highlights based on filter
-function displayHighlights(filter = '') {
-    console.log('Filtering with:', filter); // Debug log
+const displayHighlights = function(filter) {
+    console.log('Filtering with:', filter);
     const highlightList = document.getElementById('highlightList');
     if (!highlightList) {
-        console.error('highlightList not found'); // Debug log
+        console.error('highlightList element not found');
         return;
     }
     highlightList.innerHTML = '';
     const filteredHighlights = [];
     const searchTerm = filter.trim().toLowerCase();
 
-    for (const highlight of highlights) {
-        if (highlight.toLowerCase().includes(searchTerm)) {
-            filteredHighlights.push(highlight);
+    // If search is empty, show default highlights
+    if (searchTerm === '') {
+        for (let i = 0; i < highlights.length; i++) {
+            filteredHighlights.push(highlights[i]);
+        }
+    } else {
+        // Check main highlights for matches
+        for (let i = 0; i < highlights.length; i++) {
+            if (highlights[i].toLowerCase().includes(searchTerm)) {
+                filteredHighlights.push(highlights[i]);
+            }
+        }
+        // Check additional player highlights for matches
+        for (let i = 0; i < playerNames.length; i++) {
+            if (playerNames[i].toLowerCase() === searchTerm) {
+                console.log('Matched player:', playerNames[i]);
+                // Add corresponding highlight from additionalPlayerHighlights if it exists
+                if (i < additionalPlayerHighlights.length && additionalPlayerHighlights[i]) {
+                    filteredHighlights.push(additionalPlayerHighlights[i]);
+                }
+                break;
+            }
         }
     }
 
+    // Display results
     if (filteredHighlights.length > 0) {
-        for (const highlight of filteredHighlights) {
+        for (let i = 0; i < filteredHighlights.length; i++) {
             const li = document.createElement('li');
             li.className = 'list-group-item';
-            li.textContent = highlight;
+            li.textContent = filteredHighlights[i];
             highlightList.appendChild(li);
         }
     } else {
         const li = document.createElement('li');
         li.className = 'list-group-item';
-        li.textContent = 'No highlights found.';
+        // Check if search term matches any player name
+        let isPlayer = false;
+        for (let i = 0; i < playerNames.length; i++) {
+            if (playerNames[i].toLowerCase() === searchTerm) {
+                isPlayer = true;
+                break;
+            }
+        }
+        if (isPlayer) {
+            li.textContent = 'No highlights found for ' + filter.trim() + '. Check back for updates!';
+        } else {
+            li.textContent = 'No highlights found.';
+        }
         highlightList.appendChild(li);
     }
-}
+};
 
-// Debounce function to limit rapid input events
-function debounce(func, wait) {
+// Debounce function
+const debounce = function(func, wait) {
     let timeout;
-    return function executedFunction(...args) {
-        const later = () => {
-            clearTimeout(timeout);
+    return function(...args) {
+        const later = function() {
+            timeout = null;
             func(...args);
         };
         clearTimeout(timeout);
         timeout = setTimeout(later, wait);
     };
-}
+};
 
-// Ensure DOM is loaded
-document.addEventListener('DOMContentLoaded', () => {
-    console.log('DOM loaded for highlights.js'); // Debug log
+// Handle feedback submission
+const handleFeedback = function() {
+    const feedbackName = document.getElementById('feedbackName');
+    const feedbackText = document.getElementById('feedbackText');
+    const submitButton = document.getElementById('submitFeedback');
+    const feedbackMessage = document.getElementById('feedbackMessage');
+
+    if (!feedbackName || !feedbackText || !submitButton || !feedbackMessage) {
+        console.error('Feedback form elements missing');
+        return;
+    }
+
+    if (feedbackName.value.trim() && feedbackText.value.trim()) {
+        submitButton.disabled = true;
+        submitButton.textContent = 'Submitting...';
+        feedbackMessage.style.display = 'none';
+
+        // Simulate submission delay
+        setTimeout(function() {
+            feedbackMessage.textContent = 'Thank you for your feedback!';
+            feedbackMessage.style.display = 'block';
+            submitButton.disabled = false;
+            submitButton.textContent = 'Submit Feedback';
+            feedbackName.value = '';
+            feedbackText.value = '';
+        }, 1000);
+    } else {
+        feedbackMessage.textContent = 'Please fill out both name and feedback fields.';
+        feedbackMessage.style.display = 'block';
+    }
+};
+
+// DOM loaded
+document.addEventListener('DOMContentLoaded', function() {
+    console.log('DOM loaded for highlights.js');
     const filterInput = document.getElementById('filterInput');
     if (filterInput) {
         const debouncedDisplayHighlights = debounce(displayHighlights, 300);
-        filterInput.addEventListener('input', () => {
+        filterInput.addEventListener('input', function() {
+            console.log('Input event fired:', filterInput.value);
             debouncedDisplayHighlights(filterInput.value);
         });
-        displayHighlights(); // Initial display
+        displayHighlights('');
     } else {
-        console.error('filterInput not found'); // Debug log
+        console.error('filterInput element not found');
+    }
+
+    const submitButton = document.getElementById('submitFeedback');
+    if (submitButton) {
+        submitButton.addEventListener('click', handleFeedback);
+    } else {
+        console.error('submitFeedback button not found');
     }
 });

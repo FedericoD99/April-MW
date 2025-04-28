@@ -22,7 +22,6 @@ function showNewsMessage() {
     console.log('Displaying message:', selectedMessage); // Debug log
 }
 
-// Ensure DOM is loaded
 document.addEventListener('DOMContentLoaded', () => {
     console.log('DOM loaded for index.js'); // Debug log
     const newsButton = document.getElementById('newsButton');

@@ -5,9 +5,9 @@
     box-sizing: border-box;
 }
 
-/* Body with Yankees navy blue gradient and centered content */
+/* Body with Yankees navy blue gradient */
 body {
-    font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     background: linear-gradient(180deg, #0C2340 0%, #1C2526 100%);
     color: #FFFFFF;
     line-height: 1.6;
@@ -17,7 +17,7 @@ body {
     min-height: 100vh;
 }
 
-/* Center container for all content */
+/* Container styling */
 .container {
     max-width: 1200px;
     width: 90%;
@@ -29,13 +29,13 @@ body {
     animation: fadeIn 1.5s ease-in;
 }
 
-/* Fade-in animation for smooth appearance */
+/* Fade-in animation */
 @keyframes fadeIn {
     from { opacity: 0; transform: translateY(20px); }
     to { opacity: 1; transform: translateY(0); }
 }
 
-/* Navbar styling with centered links */
+/* Navbar styling */
 .navbar {
     background: #0C2340;
     border-bottom: 3px solid #C8102E;
@@ -46,7 +46,7 @@ body {
     animation: slideIn 1s ease-out;
 }
 
-/* Slide-in animation for navbar */
+/* Slide-in animation */
 @keyframes slideIn {
     from { transform: translateY(-100%); }
     to { transform: translateY(0); }
@@ -70,7 +70,7 @@ body {
     gap: 20px;
 }
 
-/* Header with centered title */
+/* Header styling */
 header {
     text-align: center;
     padding: 40px 0;
@@ -87,7 +87,12 @@ header h1 {
     color: #FFFFFF;
 }
 
-/* Main content with centered grid */
+header p {
+    font-size: 1.2em;
+    color: #C0C0C0;
+}
+
+/* Main content */
 main {
     display: flex;
     flex-direction: column;
@@ -135,35 +140,8 @@ main {
     transform: scale(1.05);
 }
 
-/* Image styling */
-img {
-    max-width: 100%;
-    height: auto;
-    border-radius: 10px;
-    border: 2px solid #C0C0C0;
-    margin: 15px 0;
-    transition: transform 0.3s ease;
-}
-
-img:hover {
-    transform: scale(1.03);
-}
-
-/* Text styling for paragraphs and headings */
-h2 {
-    font-size: 2em;
-    color: #C0C0C0;
-    margin-bottom: 15px;
-}
-
-p {
-    font-size: 1.1em;
-    margin-bottom: 15px;
-    max-width: 500px;
-}
-
-/* Input field styling */
-.form-control {
+/* Input and textarea styling */
+.form-control, textarea.form-control {
     max-width: 500px;
     background: #FFFFFF;
     color: #0C2340;
@@ -175,13 +153,13 @@ p {
     margin-bottom: 20px;
 }
 
-.form-control:focus {
+.form-control:focus, textarea.form-control:focus {
     border-color: #C8102E;
     box-shadow: 0 0 8px rgba(200, 16, 46, 0.5);
     outline: none;
 }
 
-/* List styling for players and highlights */
+/* List styling */
 .list-group {
     width: 100%;
     max-width: 500px;
@@ -209,64 +187,86 @@ p {
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
-/* Flip card styling for players */
-.player-card {
-    perspective: 1000px;
-}
-
-.flip-container {
-    width: 100%;
-    height: 50px;
-    position: relative;
-    transition: transform 0.6s;
-    transform-style: preserve-3d;
-}
-
-.player-card:hover .flip-container {
-    transform: rotateY(180deg);
-}
-
-.card-front, .card-back {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    backface-visibility: hidden;
+/* Video container */
+.video-container {
     display: flex;
-    align-items: center;
-    justify-content: center;
-    border-radius: 8px;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 500px;
+}
+
+.video-item {
+    position: relative;
+    overflow: hidden;
+    border-radius: 10px;
     border: 2px solid #C0C0C0;
-    font-size: 1.2em;
-    font-weight: bold;
+    transition: transform 0.3s ease;
+}
+
+.video-item:hover {
+    transform: scale(1.03);
+}
+
+.video-item iframe {
+    width: 100%;
+    height: 200px;
+    border: none;
+}
+
+.video-item p {
+    margin: 10px 0 0;
+    font-size: 1.1em;
+    color: #C0C0C0;
     text-align: center;
-    padding: 10px;
 }
 
-.card-front {
-    background: #FFFFFF;
-    color: #0C2340;
+/* Feedback form */
+.feedback-form {
+    max-width: 500px;
+    width: 100%;
 }
 
-.card-back {
-    background: #0C2340;
-    color: #FFFFFF;
-    transform: rotateY(180deg);
-}
-
-/* News message styling */
-#newsMessage {
+/* Feedback message */
+.feedback-message {
     max-width: 500px;
     background: #FFFFFF;
     color: #0C2340;
-    border: 2px solid #C0C0C0;
+    border: 2px solid #C8102E;
     border-radius: 8px;
     padding: 15px;
     margin-top: 15px;
     font-size: 1.1em;
     font-weight: bold;
     text-align: center;
-    animation: fadeIn 0.5s ease-in;
     display: none;
+    animation: fadeIn 0.5s ease-in;
+}
+
+/* Gradient button */
+.css-button-gradient--8 {
+    min-width: 130px;
+    height: 40px;
+    color: #fff;
+    padding: 5px 10px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    display: inline-block;
+    outline: none;
+    border-radius: 5px;
+    border: none;
+    background-size: 120% auto;
+    background-image: linear-gradient(315deg, #C8102E 0%, #0C2340 75%);
+}
+
+.css-button-gradient--8:hover {
+    background-position: right center;
+}
+
+.css-button-gradient--8:active {
+    top: 2px;
 }
 
 /* Footer styling */
@@ -283,30 +283,3 @@ footer p {
     font-size: 1em;
     color: #C0C0C0;
 }
-
-
-.css-button-gradient--8 {
-    min-width: 130px;
-    height: 40px;
-    color: #fff;
-    padding: 5px 10px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    position: relative;
-    display: inline-block;
-    outline: none;
-    border-radius: 5px;
-    border: none;
-    background-size: 120% auto;
-    background-image: linear-gradient(315deg, #7b4397 0%, #dc2430 75%);
-  }
-  .css-button-gradient--8:hover {
-    background-position: right center;
-  }
-  .css-button-gradient--8:active {
-    top: 2px;
-  }
-
-
-  
